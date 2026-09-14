@@ -15,14 +15,14 @@
     "gle_update_steps": 10,
     "learning_rate": 0.005,
     "num_epochs": 300,
-    "batch_size": 64,
+    "batch_size": 128,
     "trajectory_generator_type": "gle",
-    "time_prep": 650.0,
+    "time_prep": 550.0,
     "time_move": 500.0,
-    "time_locked_with_feedback": 150.0,
+    "time_locked_with_feedback": 250.0,
     "time_grasp": 100.0,
     "time_post": 100.0,
     "resolution": 1.0,
-    "git_commit": "efe7760",
+    "git_commit": "9083328",
     "seed": 0
 }

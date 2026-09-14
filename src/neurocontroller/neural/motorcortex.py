@@ -13,6 +13,11 @@ from neurocontroller.neural.nest_adapter import nest
 
 from .population_view import PopView
 
+## TEMPORANEO PER IMPORTARE IL PATH SPECIFICO DEL CONFIG DELLA M1 ##
+import sys
+sys.path.insert(0, "/sim/controller/submodules/motor_cortex_eprop/src")
+##
+
 
 class M1SubModule(Protocol):
     """Structural interface for M1 submodule implementations."""
