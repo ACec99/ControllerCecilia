@@ -1,0 +1,36 @@
+services:
+  tutorial:
+    # Prebuilt, multi-arch image published by CI — no local build ever happens.
+    image: ghcr.io/near-nes/simulation:tutorial
+    pull_policy: always
+    stdin_open: true
+    tty: true
+    environment:
+      UID: ${UID:-1000}
+      GID: ${GID:-1000}
+      TZ: ${TZ:-Europe/Rome}
+      ENABLE_VNC: ${ENABLE_VNC:-false}
+      PYNEST_QUIET: 0
+    # Bound to 127.0.0.1 only: reachable from the participant's own machine,
+    # not from their local network.
+    ports:
+      - "127.0.0.1:8888:8888"
+    volumes:
+      - .:/sim/controller
+    working_dir: /sim/controller
+    # No token/password: acceptable only because the port is bound to
+    # localhost above. Do not remove the 127.0.0.1 prefix on the port line
+    # if you keep auth disabled.
+    command: >
+      jupyter lab
+      --ip=0.0.0.0
+      --port=8888
+      --no-browser
+      --ServerApp.token=''
+      --ServerApp.password=''
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8888"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
