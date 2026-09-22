@@ -1,3 +1,5 @@
+## TEMPORANEO PER IMPORTARE IL PATH SPECIFICO DEL CONFIG DELLA M1 ##
+import sys
 from typing import Protocol, Tuple
 
 import structlog
@@ -13,8 +15,6 @@ from neurocontroller.neural.nest_adapter import nest
 
 from .population_view import PopView
 
-## TEMPORANEO PER IMPORTARE IL PATH SPECIFICO DEL CONFIG DELLA M1 ##
-import sys
 sys.path.insert(0, "/sim/controller/submodules/motor_cortex_eprop/src")
 ##
 
@@ -147,6 +147,7 @@ class MotorCortex:
                 training=TrainingSignalConfig(
                     n_input_neurons=numNeurons,
                     time_move_ms=self.sim.time_move,
+                    time_locked_with_feedback_ms=self.sim.time_locked_with_feedback,
                     m1_kp=params.m1_mock_config.m1_kp,
                     m1_base_rate=params.m1_mock_config.m1_base_rate,
                     inertia=self.sim.oracle.robot_spec.I[0],
