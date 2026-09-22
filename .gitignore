@@ -37,3 +37,6 @@ tests/training/artifacts
 # Jupyter
 .ipynb_checkpoints/
 
+# .env for tutorial
+env.example
+
