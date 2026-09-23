@@ -230,10 +230,23 @@ RUN git config --global --add safe.directory $CEREBELLUM_PATH
 FROM builder AS package_install
 WORKDIR /tmp/pkg
 # Copy only files needed for dependency resolution.
+## ORIGINAL CODE ##
+#COPY pyproject.toml README.md ./
+#RUN --mount=type=cache,target=/root/.cache/uv \
+#    uv pip install -r pyproject.toml -c /tmp/constraints.txt --no-build-isolation \
+#    --extra-index-url https://download.pytorch.org/whl/cpu
+## ------------- ##
+ARG TARGETARCH
+# Copy only files needed for dependency resolution.
 COPY pyproject.toml README.md ./
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv pip install -r pyproject.toml -c /tmp/constraints.txt --no-build-isolation \
-    --extra-index-url https://download.pytorch.org/whl/cpu
+    if [ "$TARGETARCH" = "arm64" ]; then \
+        sed 's/+cpu//' /tmp/constraints.txt > /tmp/constraints-arm64.txt && \
+        uv pip install -r pyproject.toml -c /tmp/constraints-arm64.txt --no-build-isolation; \
+    else \
+        uv pip install -r pyproject.toml -c /tmp/constraints.txt --no-build-isolation \
+        --extra-index-url https://download.pytorch.org/whl/cpu; \
+    fi
 
 # final runtime image
 FROM base AS runtime
