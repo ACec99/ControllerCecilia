@@ -9,8 +9,8 @@ simulations:
         - model: stdp_synapse_sinexp
           weight: 0.14
           delay: 5
-          Aplus: 9e-6
-          Aminus: -5e-4
+          Aplus: 1e-4 #9e-6
+          Aminus: -1e-3 #-5e-4
           receptor_type: 1
       parallel_fiber_to_stellate:
         synapses:
@@ -33,8 +33,8 @@ simulations:
         - model: stdp_synapse_sinexp
           weight: 0.14
           delay: 5
-          Aplus: 9e-6
-          Aminus: -5e-4
+          Aplus: 1e-4 #9e-6
+          Aminus: -1e-3 #-5e-4
           receptor_type: 1
 
 $import:

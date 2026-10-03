@@ -11,11 +11,11 @@ task:
 training:
   trajectories:
   - init_angle_deg: 90.0
-    target_angle_deg: 140.0
-  - init_angle_deg: 90.0
     target_angle_deg: 20.0
+  - init_angle_deg: 90.0
+    target_angle_deg: 140.0
   sampling:
-    strategy: sequential
+    strategy: shuffled_epochs
   n_input_neurons: 200
   planner_kp: 100.0
   planner_base_rate: 5.0
@@ -24,8 +24,7 @@ training:
   inertia: 0.00189
   time_prep_ms: 650.0
   time_move_ms: 500.0
-  time_locked_with_feedback_ms: 350.0
-  time_post_ms: 0.0
+  time_post_ms: 350.0
 inference:
   trajectories:
   - init_angle_deg: 90.0
@@ -80,24 +79,24 @@ synapses:
   receptor_type: 2
   exc:
     optimizer:
-      type: gradient_descent
-      eta: 4e-5
+      type: adam
+      eta: 0.001
       Wmin: 0.0
       Wmax: 1000.0
       optimize_each_step: false
-      beta_1: null
-      beta_2: null
-      epsilon: null
+      beta_1: 0.9
+      beta_2: 0.999
+      epsilon: 1e-8
   inh:
     optimizer:
-      type: gradient_descent
-      eta: 8e-5
+      type: adam
+      eta: 0.001
       Wmin: -1000
       Wmax: 0.0
       optimize_each_step: false
-      beta_1: null
-      beta_2: null
-      epsilon: null
+      beta_1: 0.9
+      beta_2: 0.999
+      epsilon: 1e-8
     plastic: true
     weight: -1
   rec_out:
@@ -134,4 +133,4 @@ background:
   delay: 1.0
   start_ms: 0.0
   stop_ms: null
-git_commit: 7edd1c9a90a8b8bb8f288868fc7ef0b678ee207d
+git_commit: d57cfcd7e5d1d3850ac0ec82ab0ffc27a20c742b

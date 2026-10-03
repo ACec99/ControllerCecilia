@@ -24,7 +24,7 @@ class ConnectionsParams(BaseModel):
     # atm dcn_f->pred : AtoA conn
     dcn_forw_prediction: SingleSynapseParams = Field(
         default_factory=lambda: SingleSynapseParams(
-            weight=0.046,  # (1/65)*3
+            weight=0.0,  # 0.04,  # 0.046,  # (1/65)*3
             delay=min_delay,
         )
     )
