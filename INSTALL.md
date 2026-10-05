@@ -38,7 +38,7 @@ docker compose run --build --rm development
 
 ## Quick setup to run the explorative notebook (prebuilt image, no local build)
 
-To make the tutorial accessible to everyone, without requiring users to build the container from source, which takes a long time, and regardless of their operating system (Windows, macOS, or Linux), the image is already built in [CI](https://docs.github.com/en/actions) and published on [GHCR](https://docs.github.com/en/packages/working-with-a-github-container-registry). A dedicated Docker Compose file pulls (downloads) this ready-made image instead of building it locally.
+To make the tutorial accessible to everyone, without requiring users to build the container from source, which takes a long time, and regardless of their operating system (Windows, macOS, or Linux), the image is already built in [CI](https://docs.github.com/en/actions) and published on [GHCR](https://docs.github.com/en/packages/working-with-a-github-container-registry). A dedicated Docker Compose file pulls this ready-made image instead of building it locally.
 
 Follow the steps for your operating system:
 
@@ -95,8 +95,9 @@ Follow the steps for your operating system:
          ./install.sh
     ```
   6. Open [http://localhost:8888](http://localhost:8888) in your browser.
-  
-The first run downloads the image (a few GB) — this is a plain download, not a build, so it should be similar on every machine.
+
+> [!NOTE]
+> The first run downloads the image (a few GB). This is a plain download, not a build, so it should be similar on every machine.
 
 
 ## Further information
