@@ -43,58 +43,58 @@ To make the tutorial accessible to everyone, without requiring users to build th
 Follow the steps for your operating system:
 
 - **Windows:**
-  1. Install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) (Windows Subsystem for Linux).
-  2. Install [Docker Desktop for Windows](https://docs.docker.com/desktop/setup/install/windows-install/), then open it and leave it running (check for its icon in the system tray).
-  3. Clone this repository and enter the directory:
-    ```sh
-         git clone https://github.com/ACec99/ControllerCecilia.git controller && cd controller && git submodule update --init --recursive
-    ```
-  4. Run the installer, which pulls the image and starts the container:
-    ```powershell
-         .\install.ps1
-    ```
-     If PowerShell blocks the script with a "running scripts is disabled" error, run this once first, then retry:
-    ```powershell
-         Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-    ```
-  5. Open [http://localhost:8888](http://localhost:8888) in your browser.
+1. Install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) (Windows Subsystem for Linux).
+2. Install [Docker Desktop for Windows](https://docs.docker.com/desktop/setup/install/windows-install/), then open it and leave it running (check for its icon in the system tray).
+3. Clone this repository and enter the directory:
+```sh
+     git clone https://github.com/ACec99/ControllerCecilia.git controller && cd controller && git submodule update --init --recursive
+```
+4. Run the installer, which pulls the image and starts the container:
+```powershell
+     .\install.ps1
+```
+   If PowerShell blocks the script with a "running scripts is disabled" error, run this once first, then retry:
+```powershell
+     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+5. Open [http://localhost:8888](http://localhost:8888) in your browser.
 
 - **macOS:**
-  1. Install [Docker Desktop for macOS](https://docs.docker.com/desktop/setup/install/mac-install/). Choose the version matching your Mac's chip (Apple Silicon or Intel; check via Apple menu → About This Mac), then open it and leave it running.
-  2. Clone this repository and enter the directory:
-    ```sh
-         git clone https://github.com/ACec99/ControllerCecilia.git controller && cd controller && git submodule update --init --recursive
-    ```
-  3. Run the installer, which pulls the image and starts the container:
-    ```sh
-         ./install.sh
-    ```
-  4. Open [http://localhost:8888](http://localhost:8888) in your browser.
+1. Install [Docker Desktop for macOS](https://docs.docker.com/desktop/setup/install/mac-install/). Choose the version matching your Mac's chip (Apple Silicon or Intel; check via Apple menu → About This Mac), then open it and leave it running.
+2. Clone this repository and enter the directory:
+```sh
+     git clone https://github.com/ACec99/ControllerCecilia.git controller && cd controller && git submodule update --init --recursive
+```
+3. Run the installer, which pulls the image and starts the container:
+```sh
+     ./install.sh
+```
+4. Open [http://localhost:8888](http://localhost:8888) in your browser.
 
 - **Linux:**
-  1. Install [Docker Engine](https://docs.docker.com/engine/install/).
-  2. Check that the Compose plugin is installed:
-    ```sh
-         docker compose version
-    ```
-     If it fails:
-    ```sh
-         sudo apt install docker-compose-plugin
-    ```
-  3. Add your user to the `docker` group, so Docker commands can run without `sudo`:
-    ```sh
-         sudo usermod -aG docker $USER
-    ```
-     Log out and back in for this to take effect.
-  4. Clone this repository and enter the directory:
-    ```sh
-         git clone https://github.com/ACec99/ControllerCecilia.git controller && cd controller && git submodule update --init --recursive
-    ```
-  5. Run the installer, which pulls the image and starts the container:
-    ```sh
-         ./install.sh
-    ```
-  6. Open [http://localhost:8888](http://localhost:8888) in your browser.
+1. Install [Docker Engine](https://docs.docker.com/engine/install/).
+2. Check that the Compose plugin is installed:
+```sh
+     docker compose version
+```
+   If it fails:
+```sh
+     sudo apt install docker-compose-plugin
+```
+3. Add your user to the `docker` group, so Docker commands can run without `sudo`:
+```sh
+     sudo usermod -aG docker $USER
+```
+   Log out and back in for this to take effect.
+4. Clone this repository and enter the directory:
+```sh
+     git clone https://github.com/ACec99/ControllerCecilia.git controller && cd controller && git submodule update --init --recursive
+```
+5. Run the installer, which pulls the image and starts the container:
+```sh
+     ./install.sh
+```
+6. Open [http://localhost:8888](http://localhost:8888) in your browser.
 
 > [!NOTE]
 > The first run downloads the image (a few GB). This is a plain download, not a build, so it should be similar on every machine.
