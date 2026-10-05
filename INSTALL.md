@@ -16,7 +16,7 @@ and uses, in addition to our own code, a few supporting repos:
 
 All of this needs to be MPI-compatible, so the setup is somewhat involved. In this document, we'll first get you going and then document some additional information for future-proofing.
 
-## Basic setup
+## Full setup to build the environment from scratch (local build)
 For this, you'll need [docker](https://docs.docker.com/engine/install/) already set up and working. We'll assume you've done the setup to use it without `sudo`, but you must understand that Docker (and our image) still has [real power](https://docs.docker.com/engine/security/#docker-daemon-attack-surface) over your system. The `controller/` directory will be mounted as a bind mount, and the container image _will_ create files inside it on your behalf.
 
 0. Clone this repository and enter the directory
@@ -35,6 +35,69 @@ docker compose run --build --rm development
 
 > [!NOTE]
 > The first run will take longer. Optimize startup time by building the image with the user who will be the runner; the bind mounted `controller/` directory is owned by you.
+
+## Quick setup to run the explorative notebook (prebuilt image, no local build)
+
+To make the tutorial accessible to everyone, without requiring users to build the container from source, which takes a long time, and regardless of their operating system (Windows, macOS, or Linux), the image is already built in [CI](https://docs.github.com/en/actions) and published on [GHCR](https://docs.github.com/en/packages/working-with-a-github-container-registry). A dedicated Docker Compose file pulls (downloads) this ready-made image instead of building it locally.
+
+Follow the steps for your operating system:
+
+- **Windows:**
+  1. Install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install) (Windows Subsystem for Linux).
+  2. Install [Docker Desktop for Windows](https://docs.docker.com/desktop/setup/install/windows-install/), then open it and leave it running (check for its icon in the system tray).
+  3. Clone this repository and enter the directory:
+    ```sh
+         git clone https://github.com/ACec99/ControllerCecilia.git controller && cd controller && git submodule update --init --recursive
+    ```
+  4. Run the installer, which pulls the image and starts the container:
+    ```powershell
+         .\install.ps1
+    ```
+     If PowerShell blocks the script with a "running scripts is disabled" error, run this once first, then retry:
+    ```powershell
+         Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+    ```
+  5. Open [http://localhost:8888](http://localhost:8888) in your browser.
+
+- **macOS:**
+  1. Install [Docker Desktop for macOS](https://docs.docker.com/desktop/setup/install/mac-install/). Choose the version matching your Mac's chip (Apple Silicon or Intel; check via Apple menu → About This Mac), then open it and leave it running.
+  2. Clone this repository and enter the directory:
+    ```sh
+         git clone https://github.com/ACec99/ControllerCecilia.git controller && cd controller && git submodule update --init --recursive
+    ```
+  3. Run the installer, which pulls the image and starts the container:
+    ```sh
+         ./install.sh
+    ```
+  4. Open [http://localhost:8888](http://localhost:8888) in your browser.
+
+- **Linux:**
+  1. Install [Docker Engine](https://docs.docker.com/engine/install/).
+  2. Check that the Compose plugin is installed:
+    ```sh
+         docker compose version
+    ```
+     If it fails:
+    ```sh
+         sudo apt install docker-compose-plugin
+    ```
+  3. Add your user to the `docker` group, so Docker commands can run without `sudo`:
+    ```sh
+         sudo usermod -aG docker $USER
+    ```
+     Log out and back in for this to take effect.
+  4. Clone this repository and enter the directory:
+    ```sh
+         git clone https://github.com/ACec99/ControllerCecilia.git controller && cd controller && git submodule update --init --recursive
+    ```
+  5. Run the installer, which pulls the image and starts the container:
+    ```sh
+         ./install.sh
+    ```
+  6. Open [http://localhost:8888](http://localhost:8888) in your browser.
+  
+The first run downloads the image (a few GB) — this is a plain download, not a build, so it should be similar on every machine.
+
 
 ## Further information
 There's a few important pieces of information you should have if you're looking to update, modify or understand the `docker-compose.yaml` or the corresponding dockerfile. Of course, these are tightly related to the process.
